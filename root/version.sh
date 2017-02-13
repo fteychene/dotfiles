@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+JAVA_VERSION="1.8.0_121"
+MVN_VERSION="3.3.9"
+SCALA_VERSION="2.12.1"

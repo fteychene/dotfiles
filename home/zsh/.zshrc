@@ -1,7 +1,5 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/fteychene/.oh-my-zsh
-#export TERM=xterm-256color
-export TERM=screen-256color
 
 export EDITOR='vim'
 
@@ -113,15 +111,15 @@ if [ -d ~/bin ]; then
     export PATH=~/bin:$PATH
 fi
 
-#Java 
-export JAVA_HOME=/opt/java/jdk
+#Java
+export JAVA_HOME=/opt/java/jdk1.8.0_121
 export PATH=$JAVA_HOME/bin:$PATH
 
-export M2_HOME=/opt/maven
+export M2_HOME=/opt/maven/apache-maven-3.3.9
 export PATH=$M2_HOME/bin:$PATH
 
 # Scala
-export SCALA_HOME=/opt/scala/scala
+export SCALA_HOME=/opt/scala/scala-2.12.1
 export SBT_HOME=/opt/sbt/sbt
 export PATH=$SCALA_HOME/bin:$SBT_HOME/bin:$PATH
 
