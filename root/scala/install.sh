@@ -30,7 +30,7 @@ function extract_scala {
 
 function create_bin_links {
   echo "Create links for commands"
-  commands=( "scala", "scalac", "scaladoc", "scalap" )
+  commands=( "scala" "scalac" "scaladoc" "scalap" )
   for command in "${commands[@]}"; do
     ln -sf $INSTALL_DIRECTORY/$SCALA_HOME/bin/$command /usr/bin/$command
   done

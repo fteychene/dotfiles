@@ -1,5 +1,6 @@
 #!/bin/bash
 
+stow -t $HOME git
 stow -t $HOME tabmo
 stow -t $HOME bash
 stow -t $HOME zsh
