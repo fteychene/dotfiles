@@ -130,3 +130,15 @@ export PATH=/opt/p4merge/bin/:$PATH
 
 # Tabmo specific
 source ~/.tabmo.conf
+
+
+if [[ -z "$TMUX" ]]
+then
+    ID="`tmux ls | grep -vm1 attached | cut -d: -f1`"
+    if [[ -z "$ID" ]]
+    then
+        tmux new-session
+    else
+        tmux attach-session -t "$ID"
+    fi
+fi
