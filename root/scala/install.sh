@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SCALA_VERSION="2.12.1"
-SCALA_HOME="scala-$MVN_VERSION"
+SCALA_HOME="scala-$SCALA_VERSION"
 INSTALL_DIRECTORY="/opt/scala"
 TMP_DIRECTORY="/tmp/scala_install"
 
@@ -11,7 +11,7 @@ function get_scala {
     mkdir -p $TMP_DIR
   fi
   SCALA_ARCHIVE=$TMP_DIR/scala-$SCALA_VERSION.tar.gz
-  echo "Download maven binary"
+  echo "Download scala binary"
   wget --no-check-certificate --no-cookies \
     --output-document=$SCALA_ARCHIVE \
     http://downloads.lightbend.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz
@@ -24,15 +24,15 @@ function extract_scala {
   if [ ! -d "$DEST_DIR" ]; then
     mkdir -p $DEST_DIR
   fi
-  echo "Extracting maven"
+  echo "Extracting scala"
   tar -xzf $ARCHIVE -C $DEST_DIR
 }
 
 function create_bin_links {
   echo "Create links for commands"
-  commands=( "mvn", "scalac", "scaladoc", "scalap" )
+  commands=( "scala", "scalac", "scaladoc", "scalap" )
   for command in "${commands[@]}"; do
-    ln -sf $INSTALL_DIRECTORY/$M2_HOME/bin/$command /usr/bin/$command
+    ln -sf $INSTALL_DIRECTORY/$SCALA_HOME/bin/$command /usr/bin/$command
   done
 }
 
