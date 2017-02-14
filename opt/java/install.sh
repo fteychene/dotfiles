@@ -7,7 +7,7 @@ TMP_DIRECTORY="/tmp/jdk_install"
 
 function get_jdk {
   local TMP_DIR=$1
-  if [ ! -d "$TMP_DIR"]; then
+  if [ ! -d "$TMP_DIR" ]; then
     mkdir -p $TMP_DIR
   fi
   JDK_ARCHIVE=$TMP_DIR/jdk.tar.gz
