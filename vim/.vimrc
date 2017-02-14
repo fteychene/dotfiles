@@ -19,6 +19,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'ascenator/L9', {'name': 'newL9'}
+"Colors
+Plugin 'w0ng/vim-hybrid'
+Plugin 'jonathanfilip/vim-lucius'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,6 +40,9 @@ filetype plugin indent on    " required
 "
 
 set t_Co=256
+syntax on
+set background=dark
+colorscheme hybrid
 
 """"""""""""""""""""""""
 " Airline configuration
