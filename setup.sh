@@ -37,7 +37,7 @@ install_requirements() {
 }
 
 # For information, now is included in doftfiles-shell
-powerlinefont:(){
+powerlinefont(){
     # Powerline fonts installation
     rm -rf /tmp/fonts
     cd /tmp
