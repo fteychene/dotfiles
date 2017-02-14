@@ -24,6 +24,7 @@ install_requirements() {
     INSTALL="$INSTALL compton dunst rofi"
     # Editors
     INSTALL="$INSTALL vim"
+    INSTALL="$INSTALL pip"
     # Misc
     INSTALL="$INSTALL shutter"
     # ZSH
