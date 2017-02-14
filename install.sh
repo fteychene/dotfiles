@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-stow -t $HOME git
-stow -t $HOME tabmo
-stow -t $HOME bash
-stow -t $HOME zsh
+stow git
+stow tabmo
+stow bash
+stow zsh
 
-stow -t $HOME vim
+stow vim
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
