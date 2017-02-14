@@ -15,9 +15,42 @@ new_float normal
 hide_edge_borders none
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
+mode "border-mode" {
+  bindsym u border none
+  bindsym y border pixel 1
+  bindsym n border normal
+}
+bindsym $mod+u mode "switch-workspace"
+
+mode "switch-workspace" {
+       bindsym j move workspace to output left
+       bindsym k move workspace to output down
+       bindsym l move workspace to output up
+       bindsym m move workspace to output right
+
+       # same bindings, but for the arrow keys
+       bindsym Left move workspace to output left
+       bindsym Down move workspace to output down
+       bindsym Up move workspace to output up
+       bindsym Right move workspace to output right
+
+       # back to normal: Enter or Escape
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+
+       bindsym $mod+ampersand workspace 1
+       bindsym $mod+eacute workspace 2
+       bindsym $mod+quotedbl workspace 3
+       bindsym $mod+apostrophe workspace 4
+       bindsym $mod+parenleft workspace 5
+       bindsym $mod+minus workspace 6
+       bindsym $mod+egrave workspace 7
+       bindsym $mod+underscore workspace 8
+       bindsym $mod+ccedilla workspace 9
+       bindsym $mod+agrave workspace 10
+}
+bindsym $mod+Shift+z mode "switch-workspace"
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -30,13 +63,16 @@ floating_modifier $mod
 bindsym $mod+Return exec terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+a kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+#bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $win+Tab exec "rofi -modi 'Workspace:$bin/i3wslist.sh' -show Workspace"
+bindsym $alt+Tab exec "rofi -show window"
+bindsym $mod+d exec "rofi -show run
 
 # launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+w exec --no-startup-id morc_menu
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
@@ -51,8 +87,8 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 ################################################################################################
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
@@ -111,7 +147,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+z layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -141,13 +177,13 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
+set $ws1 Terminal
+set $ws2 Idea
+set $ws3 Comm
+set $ws4 Tabmo-Chrome
 set $ws5 5
 set $ws6 6
-set $ws7 7
+set $ws7 Chrome
 set $ws8 8
 
 # switch to workspace
@@ -181,10 +217,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open applications on specific workspaces
-# assign [class="Thunderbird"] $ws1
-# assign [class="Pale moon"] $ws2
-# assign [class="Pcmanfm"] $ws3
-# assign [class="Skype"] $ws5
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
@@ -208,7 +240,6 @@ for_window [class="qt5ct"] floating enable sticky enable border normal
 for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
 for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
 for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
@@ -223,11 +254,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
+bindsym $mod+Shift+e mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3exit lock, mode "default"
@@ -242,6 +270,8 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+bindsym $mod+F12 exec --no-startup-id blurlock
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -266,9 +296,6 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-# Lock screen
-bindsym $mod+9 exec --no-startup-id blurlock
 
 # Autostart applications
 ## adjustment of i3bar battery reading (only run at the very first login):
@@ -342,7 +369,7 @@ gaps outer -4
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
