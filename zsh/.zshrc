@@ -60,6 +60,9 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+eval `dircolors ~/.dir_colors`
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -130,7 +133,6 @@ export PATH=/opt/p4merge/bin/:$PATH
 
 # Tabmo specific
 source ~/.tabmo.conf
-
 
 if [[ -z "$TMUX" ]]
 then

@@ -177,13 +177,13 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 Terminal
-set $ws2 Idea
-set $ws3 Comm
-set $ws4 Tabmo-Chrome
+set $ws1 1.Terminal
+set $ws2 2.Idea
+set $ws3 3.Comm
+set $ws4 4.Tabmo-Chrome
 set $ws5 5
 set $ws6 6
-set $ws7 Chrome
+set $ws7 7.Chrome
 set $ws8 8
 
 # switch to workspace
