@@ -110,7 +110,7 @@ fi
 eval "$(thefuck --alias)"
 
 # Add custom commands id folder exists
-if [ -d ~/bin ]; then
+if [ -d ~/bin -o -L ~/bin ]; then
     export PATH=~/bin:$PATH
 fi
 

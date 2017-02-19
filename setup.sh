@@ -14,21 +14,20 @@ needed_packages() {
     echo "$TOINSTALL"
 }
 
-# Optional
-# mytourbook_bin
 install_requirements() {
     echo "- Install Requirements"
     # Dotfiles manager
     INSTALL="stow"
     # I3
-    INSTALL="$INSTALL compton dunst rofi"
+    INSTALL="$INSTALL compton dunst rofi conky"
     # Editors
     INSTALL="$INSTALL vim"
-    INSTALL="$INSTALL pyhton-pip"
-    # Misc
-    INSTALL="$INSTALL shutter"
-    # ZSH
-    INSTALL="zsh tmux"
+    # Installers
+    INSTALL="$INSTALL python-pip"
+    # Term
+    INSTALL="$INSTALL zsh tmux tmuxinator"
+    # Tools
+    INSTALL="$INSTALL shutter nload"
 
     # Install needed packages
     NEEDED=$(needed_packages)
