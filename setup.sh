@@ -27,7 +27,8 @@ install_requirements() {
     # Term
     INSTALL="$INSTALL zsh tmux tmuxinator"
     # Tools
-    INSTALL="$INSTALL shutter nload"
+    INSTALL="$INSTALL nload jq aws-cli"
+    INSTALL="$INSTALL shutter"
 
     # Install needed packages
     NEEDED=$(needed_packages)
