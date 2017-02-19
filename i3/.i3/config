@@ -177,13 +177,13 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1.Terminal
-set $ws2 2.Idea
-set $ws3 3.Comm
-set $ws4 4.Tabmo-Chrome
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
 set $ws5 5
 set $ws6 6
-set $ws7 7.Chrome
+set $ws7 7
 set $ws8 8
 
 # switch to workspace
@@ -308,10 +308,10 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
+exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id setcursor
+exec --no-startup-id feh --bg-scale ~/Pictures/green-fractal-wallpaper-1920x1200.jpg
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
