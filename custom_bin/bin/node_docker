@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -w /workdir -v /var/log:/var/log -v $(pwd):/workdir --env-file $(pwd)/.docker.env -P  node:6.7-slim node $@

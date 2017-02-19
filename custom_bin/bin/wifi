@@ -1,0 +1,3 @@
+#!/bin/sh
+
+nmcli r wifi $1
