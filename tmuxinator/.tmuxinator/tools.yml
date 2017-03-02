@@ -37,6 +37,6 @@ windows:
       panes:
         - nload
         - watch nmcli dev status
-  - performance: htop
+  - performance: glances
   - power: watch "upower -i $(upower -e | grep 'BAT1') | grep -E \"state|to\ full|percentage\""
   - docker: watch docker ps
