@@ -25,7 +25,7 @@ install_requirements() {
     # Utils
     INSTALL="$INSTALL vim arandr feh glances nload bind-tools curl tig"
     # Dev
-    INSTALL="$INSTALL python-pip docker-git jq aws-cli clusterssh"
+    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh"
     # Apps
     INSTAL="$INSTALL spotify slack-desktop atom google-chrome"
     # Misc
@@ -34,7 +34,7 @@ install_requirements() {
     # Install needed packages
     NEEDED=$(needed_packages)
     if [  "$NEEDED" != "" ]; then
-        for PACKAGE in $INSTALL; do
+        for PACKAGE in $NEEDED; do
           yaourt -S $PACKAGE
         done
     fi
