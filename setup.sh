@@ -4,7 +4,7 @@ needed_packages() {
     # Check package needed
     INSTALLED=$(yaourt -Q)
     TOINSTALL=""
-    for  PACKAGE in $INSTALL; do
+    for PACKAGE in $INSTALL; do
         ISINSTALLED=$(echo "$INSTALLED" | grep "/$PACKAGE")
         if [ $? -eq 1 ]; then
             TOINSTALL="$TOINSTALL $PACKAGE"
@@ -18,22 +18,25 @@ install_requirements() {
     echo "- Install Requirements"
     # Dotfiles manager
     INSTALL="stow"
-    # I3
-    INSTALL="$INSTALL compton dunst rofi conky"
-    # Editors
-    INSTALL="$INSTALL vim"
-    # Installers
-    INSTALL="$INSTALL python-pip"
+    # Display (i3)
+    INSTALL="$INSTALL i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings conky-i3 conky compton dunst rofi network-manager-applet"
     # Term
-    INSTALL="$INSTALL zsh tmux tmuxinator"
-    # Tools
-    INSTALL="$INSTALL nload jq aws-cli"
-    INSTALL="$INSTALL shutter"
+    INSTALL="$INSTALL rxvt-unicode rxvt-unicode-terminfo zsh tmux tmuxinator powerline"
+    # Utils
+    INSTALL="$INSTALL vim arandr feh glances nload bind-tools curl tig"
+    # Dev
+    INSTALL="$INSTALL python-pip docker-git jq aws-cli clusterssh"
+    # Apps
+    INSTAL="$INSTALL spotify slack-desktop atom google-chrome"
+    # Misc
+    INSTAL="$INSTALL thefuck epson-inkjet-printer-escpr"
 
     # Install needed packages
     NEEDED=$(needed_packages)
     if [  "$NEEDED" != "" ]; then
-        yaourt -S $NEEDED
+        for PACKAGE in $INSTALL; do
+          yaourt -S $PACKAGE
+        done
     fi
 }
 
