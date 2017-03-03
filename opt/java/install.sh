@@ -44,6 +44,11 @@ function create_install_link {
   ln -sTf $INSTALL_DIRECTORY/$JDK_NAME $INSTALL_DIRECTORY/jdk
 }
 
+if [ -d "$INSTALL_DIRECTORY/$JDK_NAME" ]; then
+  echo "Java $JAVA_VERSION already installed"
+  exit 0;
+fi
+
 get_jdk $TMP_DIRECTORY
 extract_jdk $INSTALL_DIRECTORY $JDK_ARCHIVE
 create_install_link $INSTALL_DIRECTORY

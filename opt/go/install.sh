@@ -37,6 +37,11 @@ function create_bin_links {
   done
 }
 
+if [ -d "$INSTALL_DIRECTORY/$GO_HOME" ]; then
+  echo "Go $GO_VERSION already installed"
+  exit 0;
+fi
+
 get_go $TMP_DIRECTORY
 extract_go $INSTALL_DIRECTORY $GO_ARCHIVE
 create_bin_links

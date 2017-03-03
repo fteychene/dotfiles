@@ -37,6 +37,11 @@ function create_bin_links {
   done
 }
 
+if [ -d "$INSTALL_DIRECTORY/$SBT_HOME" ]; then
+  echo "Sbt $SBT_VERSION already installed"
+  exit 0;
+fi
+
 get_sbt $TMP_DIRECTORY
 extract_sbt $INSTALL_DIRECTORY $SBT_ARCHIVE
 

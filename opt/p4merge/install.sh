@@ -25,6 +25,11 @@ BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 INSTALLATION_DIR="/opt/p4merge"
 TMP_DIR="/tmp/p4merge_install"
 
+if [ -d "$INSTALLATION_DIR" ]; then
+  echo "p4merge already installed"
+  exit 0;
+fi
+
 decrypt_tool $BASE_DIR $TMP_DIR
 extract_tool $TMP_DIR $TMP_DIR/tool.tgz
 mv $TMP_DIR/p4v-2015.2.1458499 $INSTALLATION_DIR

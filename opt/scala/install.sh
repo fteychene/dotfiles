@@ -36,6 +36,11 @@ function create_bin_links {
   done
 }
 
+if [ -d "$INSTALL_DIRECTORY/$SCALA_HOME" ]; then
+  echo "Scala $SCALA_VERSION already installed"
+  exit 0;
+fi
+
 get_scala $TMP_DIRECTORY
 extract_scala $INSTALL_DIRECTORY $SCALA_ARCHIVE
 

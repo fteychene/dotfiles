@@ -36,6 +36,11 @@ function create_bin_links {
   done
 }
 
+if [ -d "$INSTALL_DIRECTORY/$M2_HOME" ]; then
+  echo "Maven $MVN_VERSION already installed"
+  exit 0;
+fi
+
 get_maven $TMP_DIRECTORY
 extract_maven $INSTALL_DIRECTORY $MAVEN_ARCHIVE
 
