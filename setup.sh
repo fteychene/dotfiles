@@ -27,9 +27,9 @@ install_requirements() {
     # Dev
     INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh"
     # Apps
-    INSTAL="$INSTALL spotify slack-desktop atom google-chrome"
-    # Misc
-    INSTAL="$INSTALL thefuck epson-inkjet-printer-escpr"
+    INSTAL="$INSTALL spotify slack-desktop atom google-chrome vlc"
+    # Misc (GT4 is for layoutingVLC in a window cause apparretly i3 can't manage it solo)
+    INSTAL="$INSTALL thefuck epson-inkjet-printer-escpr qt4"
 
     # Install needed packages
     NEEDED=$(needed_packages)
