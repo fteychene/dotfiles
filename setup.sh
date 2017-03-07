@@ -25,7 +25,7 @@ install_requirements() {
     # Utils
     INSTALL="$INSTALL vim arandr feh glances nload bind-tools curl tig"
     # Dev
-    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh"
+    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant"
     # Apps
     INSTAL="$INSTALL spotify slack-desktop atom google-chrome vlc"
     # Misc (GT4 is for layoutingVLC in a window cause apparretly i3 can't manage it solo)
