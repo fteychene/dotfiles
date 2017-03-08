@@ -126,6 +126,7 @@ export SCALA_HOME=/opt/scala/scala-2.12.1
 export SBT_HOME=/opt/sbt/sbt-0.13.13
 export PATH=$SCALA_HOME/bin:$SBT_HOME/bin:$PATH
 
+export GOROOT=/opt/go/go-1.7.5
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
