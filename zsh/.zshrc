@@ -126,22 +126,24 @@ export SCALA_HOME=/opt/scala/scala-2.12.1
 export SBT_HOME=/opt/sbt/sbt-0.13.13
 export PATH=$SCALA_HOME/bin:$SBT_HOME/bin:$PATH
 
-export GOROOT=/opt/go/go-1.7.5
+export GOROOT=/opt/go/go-1.8
 export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 export PATH=/opt/p4merge/bin/:$PATH
 
 # Tabmo specific
 source ~/.tabmo.conf
 
-if [[ -z "$TMUX" ]]
-then
-    ID="`tmux ls | grep -vm1 attached | cut -d: -f1`"
-    if [[ -z "$ID" ]]
-    then
-        tmux new-session
-    else
-        tmux attach-session -t "$ID"
-    fi
-fi
+mux() {
+	if [[ -z "$TMUX" ]]
+	then
+	    ID="`tmux ls | grep -vm1 attached | cut -d: -f1`"
+	    if [[ -z "$ID" ]]
+	    then
+	        tmux new-session
+	    else
+	        tmux attach-session -t "$ID"
+	    fi
+	fi
+}

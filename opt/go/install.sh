@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GO_VERSION="1.7.5"
+GO_VERSION="1.8"
 GO_HOME="go-$GO_VERSION"
 INSTALL_DIRECTORY="/opt/go"
 TMP_DIRECTORY="/tmp/go_install"
