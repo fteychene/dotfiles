@@ -131,6 +131,7 @@ export GOPATH=~/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 export PATH=/opt/p4merge/bin/:$PATH
+export PATH=~/.cargo/bin:$PATH
 
 # Tabmo specific
 source ~/.tabmo.conf
@@ -146,4 +147,8 @@ mux() {
 	        tmux attach-session -t "$ID"
 	    fi
 	fi
+}
+
+zoom() {
+    printf '\33]50;%s\007' "xft:Terminus:pixelsize=$1"
 }

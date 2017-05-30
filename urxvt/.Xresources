@@ -66,7 +66,9 @@ URxvt*saveLines:                      5000
 ! URxvt*shading:                        138
 
 ! other possible settings:
- Rxvt.perl-ext-common: ...,clipboard
+URxvt.perl-ext-common: ...,clipboard,resize-font
+URxvt.resize-font.smaller: C-Down                                                                                                                                                                                                              
+URxvt.resize-font.bigger: C-Up
 ! URxvt.keysym.M-C-c:   perl:clipboard:copy
 ! URxvt.keysym.M-v:   perl:clipboard:paste
 ! URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
