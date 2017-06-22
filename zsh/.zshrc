@@ -131,7 +131,9 @@ export GOPATH=~/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 export PATH=/opt/p4merge/bin/:$PATH
-export PATH=~/.cargo/bin:$PATH
+export PATH=$PATH:~/.cargo/bin
+export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export PATH="$PATH:~/istio-0.1.5/bin"
 
 # Tabmo specific
 source ~/.tabmo.conf
@@ -147,8 +149,4 @@ mux() {
 	        tmux attach-session -t "$ID"
 	    fi
 	fi
-}
-
-zoom() {
-    printf '\33]50;%s\007' "xft:Terminus:pixelsize=$1"
 }
