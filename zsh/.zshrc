@@ -150,3 +150,9 @@ mux() {
 	    fi
 	fi
 }
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/fteychene/gcloud/path.zsh.inc' ]; then source '/home/fteychene/gcloud/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/fteychene/gcloud/completion.zsh.inc' ]; then source '/home/fteychene/gcloud/completion.zsh.inc'; fi
