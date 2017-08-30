@@ -81,11 +81,11 @@ bindsym $mod+w exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
+#exec --no-startup-id volumeicon
+#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id pulseaudio
+exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################
 
@@ -290,6 +290,15 @@ mode "$mode_spotify" {
     bindsym space exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
     bindsym Left exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
     bindsym Right exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+$alt+d mode $mode_screen
+set $mode_screen "Screen preset (l)aptop (h)dmi dualscreen (t)abmo "
+mode $mode_screen {
+    bindsym t exec ~/.screenlayout/tabmo.sh
+    bindsym l exec ~/.screenlayout/laptop.sh
+    bindsym h exec ~/.screenlayout/hdmi.sh
     bindsym Escape mode "default"
 }
 

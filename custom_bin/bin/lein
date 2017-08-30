@@ -1,11 +1,11 @@
 #!/bin/env bash
 
-LEIN_VERSION="2.7.1"
-PERSONNAL_TAG="$USER-$LEIN_VERSION"
+VERSION="2.7.1"
+PERSONNAL_TAG="$USER-$VERSION"
 
 if [[ "$(docker images -q clojure:$PERSONNAL_TAG 2> /dev/null)" == "" ]]; then
   cat > /tmp/clojure.dockerfile <<-EOF
-FROM clojure
+FROM clojure:$VERSION
 RUN useradd -u $(id -u $USER) -m app
 USER app
 EOF
@@ -13,4 +13,8 @@ EOF
  rm /tmp/clojure.dockerfile
 fi
 
-docker run --rm -it -v $HOME/.m2:/home/app/.m2 -v $(pwd):/workdir -w /workdir clojure:$PERSONNAL_TAG lein $@
+DOCKER_OPTS="-it --net=host"
+if [ -f .lein-env ]; then
+  DOCKER_OPTS="$DOCKER_OPTS --env-file .lein-env"
+fi
+docker run --rm $DOCKER_OPTS -v $HOME/.m2:/home/app/.m2 -v $(pwd):/workdir -w /workdir clojure:$PERSONNAL_TAG lein $@

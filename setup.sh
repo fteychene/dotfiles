@@ -19,7 +19,7 @@ install_requirements() {
     # Dotfiles manager
     INSTALL="stow"
     # Display (i3)
-    INSTALL="$INSTALL i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings conky-i3 conky compton dunst rofi network-manager-applet"
+    INSTALL="$INSTALL i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings conky-i3 conky compton dunst rofi"
     # Term
     INSTALL="$INSTALL rxvt-unicode rxvt-unicode-terminfo zsh tmux tmuxinator powerline"
     # Utils
@@ -27,9 +27,11 @@ install_requirements() {
     # Dev
     INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant"
     # Apps
-    INSTAL="$INSTALL spotify slack-desktop atom google-chrome vlc"
+    INSTALL="$INSTALL spotify slack-desktop atom google-chrome vlc"
+    # Sound to use pulse
+    INSTALL="$INSTALL pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol"
     # Misc (qt4 is for VLC display)
-    INSTAL="$INSTALL thefuck epson-inkjet-printer-escpr qt4"
+    INSTALL="$INSTALL thefuck epson-inkjet-printer-escpr qt4 network-manager-applet"
 
     # Install needed packages
     NEEDED=$(needed_packages)
