@@ -40,16 +40,16 @@ mode "switch-workspace" {
        bindsym Return mode "default"
        bindsym Escape mode "default"
 
-       bindsym $mod+ampersand workspace 1
-       bindsym $mod+eacute workspace 2
-       bindsym $mod+quotedbl workspace 3
-       bindsym $mod+apostrophe workspace 4
-       bindsym $mod+parenleft workspace 5
-       bindsym $mod+minus workspace 6
-       bindsym $mod+egrave workspace 7
-       bindsym $mod+underscore workspace 8
-       bindsym $mod+ccedilla workspace 9
-       bindsym $mod+agrave workspace 10
+       bindsym $mod+ampersand workspace $ws1
+       bindsym $mod+eacute workspace $ws2
+       bindsym $mod+quotedbl workspace $ws3
+       bindsym $mod+apostrophe workspace $ws4
+       bindsym $mod+parenleft workspace $ws5
+       bindsym $mod+minus workspace $ws6
+       bindsym $mod+egrave workspace $ws7
+       bindsym $mod+underscore workspace $ws8
+       bindsym $mod+ccedilla workspace $ws9
+       bindsym $mod+agrave workspace $ws10
 }
 bindsym $mod+Shift+z mode "switch-workspace"
 
@@ -180,16 +180,16 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 10
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1

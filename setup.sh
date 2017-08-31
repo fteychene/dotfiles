@@ -52,11 +52,16 @@ powerlinefont(){
     ./install.sh
 }
 
+materialdesginfont() {
+    cp materialdesignicons-webfont.ttf /usr/share/fonts/materialdesignicons-webfont.ttf
+}
+
 BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 # Install
 install_requirements
 powerlinefont
+materialdesginfont
 cd $BASE_DIR
 
 echo "Install softwares in /opt"
