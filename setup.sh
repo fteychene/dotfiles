@@ -61,7 +61,7 @@ BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 # Install
 install_requirements
 powerlinefont
-materialdesginfont
+sudo materialdesginfont
 cd $BASE_DIR
 
 echo "Install softwares in /opt"
