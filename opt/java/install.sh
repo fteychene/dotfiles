@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-JAVA_VERSION="1.8.0_121"
+JAVA_VERSION="1.8.0_152"
 JDK_NAME="jdk$JAVA_VERSION"
 INSTALL_DIRECTORY="/opt/java"
 TMP_DIRECTORY="/tmp/jdk_install"
@@ -15,7 +15,7 @@ function get_jdk {
   wget --no-check-certificate --no-cookies \
     --header "Cookie: oraclelicense=accept-securebackup-cookie" \
     --output-document=$JDK_ARCHIVE \
-    http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.tar.gz
+    http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-linux-x64.tar.gz
 
 }
 

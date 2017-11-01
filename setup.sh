@@ -64,6 +64,9 @@ powerlinefont
 sudo materialdesginfont
 cd $BASE_DIR
 
+echo "Install rust"
+curl https://sh.rustup.rs -sSf | sh
+
 echo "Install softwares in /opt"
 sudo $BASE_DIR/opt/install.sh
 $BASE_DIR/install.sh

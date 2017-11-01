@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MVN_VERSION="3.3.9"
+MVN_VERSION="3.5.2"
 M2_HOME="apache-maven-$MVN_VERSION"
 INSTALL_DIRECTORY="/opt/maven"
 TMP_DIRECTORY="/tmp/maven_install"
@@ -14,6 +14,7 @@ function get_maven {
   echo "Download maven binary"
   wget --no-check-certificate --no-cookies \
     --output-document=$MAVEN_ARCHIVE \
+    http://mirrors.standaloneinstaller.com/apache/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
     http://apache.trisect.eu/maven/maven-3/$MVN_VERSION/binaries/apache-maven-$MVN_VERSION-bin.tar.gz
 
 }

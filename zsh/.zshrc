@@ -115,10 +115,10 @@ if [ -d ~/bin -o -L ~/bin ]; then
 fi
 
 #Java
-export JAVA_HOME=/opt/java/jdk1.8.0_121
+export JAVA_HOME=/opt/java/jdk
 export PATH=$JAVA_HOME/bin:$PATH
 
-export M2_HOME=/opt/maven/apache-maven-3.3.9
+export M2_HOME=/opt/maven/apache-maven-3.5.2
 export PATH=$M2_HOME/bin:$PATH
 
 # Scala
@@ -133,7 +133,6 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 export PATH=/opt/p4merge/bin/:$PATH
 export PATH=$PATH:~/.cargo/bin
 export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-export PATH="$PATH:~/istio-0.1.5/bin"
 
 # Tabmo specific
 source ~/.tabmo.conf
