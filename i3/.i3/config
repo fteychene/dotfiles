@@ -294,11 +294,12 @@ mode "$mode_spotify" {
 }
 
 bindsym $mod+$alt+d mode $mode_screen
-set $mode_screen "Screen preset (l)aptop (h)dmi dualscreen (t)abmo "
+set $mode_screen "Screen preset (l)aptop (h)dmi dualscreen (t)abmo (m) mirro on hdmi"
 mode $mode_screen {
     bindsym t exec ~/.screenlayout/tabmo.sh
     bindsym l exec ~/.screenlayout/laptop.sh
     bindsym h exec ~/.screenlayout/hdmi.sh
+    bindsym m exec ~/.screenlayout/mirror.sh
     bindsym Escape mode "default"
 }
 
@@ -341,8 +342,8 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id conky -c ~/.config/conky/conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id setcursor
 exec --no-startup-id feh --bg-scale ~/Pictures/green-fractal-wallpaper-1920x1200.jpg
+exec_always --no-startup-id setcursor
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
