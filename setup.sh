@@ -27,11 +27,11 @@ install_requirements() {
     # Dev
     INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant"
     # Apps
-    INSTALL="$INSTALL spotify slack-desktop atom google-chrome vlc"
+    INSTALL="$INSTALL spotify slack-desktop google-chrome vlc"
     # Sound to use pulse
     INSTALL="$INSTALL pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol"
     # Misc (qt4 is for VLC display)
-    INSTALL="$INSTALL thefuck epson-inkjet-printer-escpr qt4 network-manager-applet"
+    INSTALL="$INSTALL thefuck qt4 network-manager-applet"
 
     # Install needed packages
     NEEDED=$(needed_packages)
@@ -53,7 +53,7 @@ powerlinefont(){
 }
 
 materialdesginfont() {
-    cp materialdesignicons-webfont.ttf /usr/share/fonts/materialdesignicons-webfont.ttf
+    cp $BASE_DIR/materialdesignicons-webfont.ttf /usr/share/fonts/materialdesignicons-webfont.ttf
 }
 
 BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"

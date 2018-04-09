@@ -17,5 +17,3 @@ stow i3
 
 stow custom_bin
 
-# Specifix to work
- stow tabmo

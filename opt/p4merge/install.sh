@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 
-function decrypt_tool {
-  local SOURCE_DIR=$1
-  local TMP_DIR=$2
+set -ue
+
+function get_p4v {
+  local TMP_DIR=$1
   if [ ! -d "$TMP_DIR" ]; then
     mkdir -p $TMP_DIR
   fi
-  echo "Decypt p4merge tools"
-  openssl aes-256-cbc -d -in $BASE_DIR/tool.tgz -out $TMP_DIR/tool.tgz
+  local P4V_ARCHIVE=$TMP_DIR/$2
+  echo "Download p4merge binary"
+  wget --no-check-certificate --no-cookies \
+    --output-document=$P4V_ARCHIVE \
+    http://www.perforce.com/downloads/perforce/r18.1/bin.linux26x86_64/p4v.tgz
 }
 
 function extract_tool {
@@ -18,7 +22,6 @@ function extract_tool {
   fi
   echo "Extracting p4merge tool"
   tar -xzf $ARCHIVE -C $DEST_DIR
-
 }
 
 BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
@@ -30,8 +33,8 @@ if [ -d "$INSTALLATION_DIR" ]; then
   exit 0;
 fi
 
-decrypt_tool $BASE_DIR $TMP_DIR
-extract_tool $TMP_DIR $TMP_DIR/tool.tgz
-mv $TMP_DIR/p4v-2015.2.1458499 $INSTALLATION_DIR
+get_p4v $TMP_DIR p4v.tar.gz
+extract_tool $TMP_DIR $TMP_DIR/p4v.tar.gz
+mv $TMP_DIR/p4v-2018.1.1637591 $INSTALLATION_DIR
 
 rm -Rf $TMP_DIR
