@@ -53,7 +53,7 @@ powerlinefont(){
 }
 
 materialdesginfont() {
-    cp $BASE_DIR/materialdesignicons-webfont.ttf /usr/share/fonts/materialdesignicons-webfont.ttf
+    sudo cp $BASE_DIR/materialdesignicons-webfont.ttf /usr/share/fonts/materialdesignicons-webfont.ttf
 }
 
 BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
@@ -61,7 +61,7 @@ BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 # Install
 install_requirements
 powerlinefont
-sudo materialdesginfont
+materialdesginfont
 cd $BASE_DIR
 
 echo "Install rust"
