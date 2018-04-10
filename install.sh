@@ -36,7 +36,7 @@ fi
 vim +PluginInstall +qall
 
 stow tmux
-stow tmuxinator
+#stow tmuxinator
 
 stow git
 stow urxvt

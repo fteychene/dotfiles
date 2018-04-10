@@ -21,7 +21,7 @@ install_requirements() {
     # Display (i3)
     INSTALL="$INSTALL i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings conky-i3 conky compton dunst rofi"
     # Term
-    INSTALL="$INSTALL rxvt-unicode rxvt-unicode-terminfo urxvt-resize-font-git zsh tmux tmuxinator powerline"
+    INSTALL="$INSTALL rxvt-unicode rxvt-unicode-terminfo urxvt-resize-font-git zsh tmux powerline"
     # Utils
     INSTALL="$INSTALL vim arandr feh glances nload bind-tools curl tig"
     # Dev
