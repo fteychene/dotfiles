@@ -37,4 +37,10 @@ get_p4v $TMP_DIR p4v.tar.gz
 extract_tool $TMP_DIR $TMP_DIR/p4v.tar.gz
 mv $TMP_DIR/p4v-2018.1.1637591 $INSTALLATION_DIR
 
+echo "Give write permission for group"
+chmod -R g+w $INSTALL_DIRECTORY
+
+echo "Clean tmp directory"
 rm -Rf $TMP_DIR
+
+echo "Installation completed"

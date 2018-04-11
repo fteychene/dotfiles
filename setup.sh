@@ -67,6 +67,15 @@ cd $BASE_DIR
 echo "Install rust"
 curl https://sh.rustup.rs -sSf | sh
 
+echo "Create development group"
+sudo groupadd development
+sudo usermod -aG development $USER
+
 echo "Install softwares in /opt"
-sudo $BASE_DIR/opt/install.sh
+sudo $BASE_DIR/opt/install.sh $USER
+
+echo "Stow configuration"
 $BASE_DIR/install.sh
+
+echo "Various config"
+sed -i -e  "s/Pale Moon/google-chrome-stable/g" ~/.config/mimeapps.list

@@ -45,6 +45,9 @@ fi
 get_sbt $TMP_DIRECTORY
 extract_sbt $INSTALL_DIRECTORY $SBT_ARCHIVE
 
+echo "Give write permission for group"
+chmod -R g+w $INSTALL_DIRECTORY
+
 echo "Clean tmp directory"
 rm -Rf $TMP_DIR
 

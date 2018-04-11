@@ -46,6 +46,9 @@ get_go $TMP_DIRECTORY
 extract_go $INSTALL_DIRECTORY $GO_ARCHIVE
 create_bin_links
 
+echo "Give write permission for group"
+chmod -R g+w $INSTALL_DIRECTORY
+
 echo "Clean tmp directory"
 rm -Rf $TMP_DIR
 
