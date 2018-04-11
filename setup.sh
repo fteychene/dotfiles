@@ -23,7 +23,7 @@ install_requirements() {
     # Term
     INSTALL="$INSTALL rxvt-unicode rxvt-unicode-terminfo urxvt-resize-font-git zsh tmux powerline"
     # Utils
-    INSTALL="$INSTALL vim arandr feh glances nload bind-tools curl tig"
+    INSTALL="$INSTALL vim arandr feh nload bind-tools curl tig"
     # Dev
     INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant"
     # Apps
