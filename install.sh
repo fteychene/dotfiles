@@ -9,6 +9,7 @@ backup() {
   mv ../.config/dunst/dunstrc ../.dunstrc.orig
   mv ../.i3/config ../.i3config.orig
   mv ../.zshrc ../.zshrc.orig
+  mv ../.profile ../.profile.orig
 }
 
 restore() {
@@ -18,6 +19,7 @@ restore() {
   mv ../.dunstrc.orig ../.config/dunst/dunstrc
   mv ../.i3config.orig ../.i3/config
   mv ../.zshrc.orig ../.zshrc
+  mv ../.profile.orig ../.profile
 }
 
 trap "restore" ERR
@@ -34,6 +36,8 @@ if [ ! -d "../.vim/bundle/Vundle.vim" ]; then
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 vim +PluginInstall +qall
+
+stow profile
 
 stow tmux
 #stow tmuxinator
