@@ -1,6 +1,8 @@
 [user]
 	email = francois.teychene@gmail.com
 	name = fteychene
+[includeIf "gitdir:~/saagie/**"]
+    path = ~/saagie/.gitconfig
 [merge]
 	keepBackup = false;
 	tool = p4merge
