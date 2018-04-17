@@ -46,6 +46,7 @@ get_maven $TMP_DIRECTORY
 extract_maven $INSTALL_DIRECTORY $MAVEN_ARCHIVE
 
 echo "Give write permission for group"
+chown -R root:development $INSTALL_DIRECTORY
 chmod -R g+w $INSTALL_DIRECTORY
 
 echo "Clean tmp directory"

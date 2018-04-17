@@ -56,6 +56,7 @@ extract_jdk $INSTALL_DIRECTORY $JDK_ARCHIVE
 create_install_link $INSTALL_DIRECTORY
 
 echo "Give write permission for group"
+chown -R root:development $INSTALL_DIRECTORY
 chmod -R g+w $INSTALL_DIRECTORY
 
 echo "Clean tmp directory"

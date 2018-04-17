@@ -45,6 +45,7 @@ get_scala $TMP_DIRECTORY
 extract_scala $INSTALL_DIRECTORY $SCALA_ARCHIVE
 
 echo "Give write permission for group"
+chown -R root:development $INSTALL_DIRECTORY
 chmod -R g+w $INSTALL_DIRECTORY
 
 echo "Clean tmp directory"

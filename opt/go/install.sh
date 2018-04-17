@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-GO_VERSION="1.8"
+GO_VERSION="1.9"
 GO_HOME="go-$GO_VERSION"
 INSTALL_DIRECTORY="/opt/go"
 TMP_DIRECTORY="/tmp/go_install"
@@ -47,6 +47,7 @@ extract_go $INSTALL_DIRECTORY $GO_ARCHIVE
 create_bin_links
 
 echo "Give write permission for group"
+chown -R root:development $INSTALL_DIRECTORY
 chmod -R g+w $INSTALL_DIRECTORY
 
 echo "Clean tmp directory"
