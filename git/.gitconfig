@@ -3,6 +3,8 @@
 	name = fteychene
 [includeIf "gitdir:~/saagie/**"]
     path = ~/saagie/.gitconfig
+[includeIf "gitdir:~/go/src/gitlab.saagie.tech/**"]
+    path = ~/saagie/.gitconfig
 [merge]
 	keepBackup = false;
 	tool = p4merge
