@@ -51,7 +51,7 @@
     
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
-    max_icon_size=50
+    max_icon_size=100
     
     
     # The geometry of the window:
