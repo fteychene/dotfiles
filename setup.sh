@@ -64,6 +64,8 @@ powerlinefont
 materialdesginfont
 cd $BASE_DIR
 
+xdg-settings set default-web-browser google-chrome-stable.desktop
+
 echo "Install rust"
 curl https://sh.rustup.rs -sSf | sh
 
