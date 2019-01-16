@@ -12,7 +12,7 @@ function start_vpn {
 	echo "Configured IP : $CONFIGURED_IP"
 	read -p "Modify it ? [y/n] " modify
 
-	[[ $modify =~ [Yy] ]] && vim +$CONFIGURATION_LINE /etc/ipsec.conf
+	[[ $modify =~ [Yy] ]] && $EDITOR +$CONFIGURATION_LINE /etc/ipsec.conf
 
 	echo "Start services"
 	systemctl start openswan

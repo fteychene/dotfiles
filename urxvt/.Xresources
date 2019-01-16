@@ -75,6 +75,7 @@ URxvt.resize-font.bigger: C-Up
 !URxvt.perl.ext-common:default,url-picker,clipboard
 URxvt.keysym.C-C:   perl:clipboard:copy
 URxvt.keysym.C-V:   perl:clipboard:paste
+URxvt.keysym.C-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 ! URxvt*termName:                       string
 ! URxvt*geometry:                       geometry

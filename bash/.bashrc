@@ -115,4 +115,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-PATH="$PATH:/home/fteychene/.conscript/bin"
+PATH="$PATH:/home/linuxbrew/.linuxbrew/bin/"
+
+export PATH=$PATH:/home/fteychene/dotfiles/custom_bin/bin
+
+source '/home/fteychene/lib/azure-cli/az.completion'

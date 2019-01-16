@@ -84,6 +84,7 @@ bindsym $mod+w exec --no-startup-id morc_menu
 #exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 exec --no-startup-id pulseaudio
+exec --no-startup-id killall pulseaudio && pulseaudio
 exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
@@ -180,16 +181,16 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 "1:"
-set $ws2 "2:λ"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws1 "1:₁"
+set $ws2 "2:λ₂"
+set $ws3 "3:₃"
+set $ws4 "4:₄"
+set $ws5 "5:₅"
+set $ws6 "6:₆"
+set $ws7 "7:₇"
+set $ws8 "8:₈"
+set $ws9 "9:₉"
+set $ws10 "10:₀"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -294,9 +295,8 @@ mode "$mode_spotify" {
 }
 
 bindsym $mod+$alt+d mode $mode_screen
-set $mode_screen "Screen preset (l)aptop (h)dmi dualscreen (t)abmo (m) mirro on hdmi"
+set $mode_screen "Screen preset (l)aptop (h)dmi dualscreen (m)irror on hdmi"
 mode $mode_screen {
-    bindsym t exec ~/.screenlayout/tabmo.sh
     bindsym l exec ~/.screenlayout/laptop.sh
     bindsym h exec ~/.screenlayout/hdmi.sh
     bindsym m exec ~/.screenlayout/mirror.sh

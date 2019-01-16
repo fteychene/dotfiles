@@ -32,6 +32,8 @@ install_requirements() {
     INSTALL="$INSTALL pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol"
     # Misc (qt4 is for VLC display)
     INSTALL="$INSTALL thefuck qt4 network-manager-applet"
+    # Fonts
+    INSTALL="$INSTALL ttf-emojione-color nerd-fonts-complete noto-fonts-emoji"
 
     # Install needed packages
     NEEDED=$(needed_packages)

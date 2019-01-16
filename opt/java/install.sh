@@ -2,7 +2,7 @@
 
 set -ue
 
-JAVA_VERSION="1.8.0_161"
+JAVA_VERSION="10.0.1_10"
 JDK_NAME="jdk$JAVA_VERSION"
 INSTALL_DIRECTORY="/opt/java"
 TMP_DIRECTORY="/tmp/jdk_install"
@@ -17,8 +17,7 @@ function get_jdk {
   wget --no-check-certificate --no-cookies \
     --header "Cookie: oraclelicense=accept-securebackup-cookie" \
     --output-document=$JDK_ARCHIVE \
-    http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-i586.tar.gz
-
+    http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.tar.gz
 }
 
 function extract_jdk {
@@ -54,12 +53,13 @@ fi
 get_jdk $TMP_DIRECTORY
 extract_jdk $INSTALL_DIRECTORY $JDK_ARCHIVE
 create_install_link $INSTALL_DIRECTORY
+create_bin_links $INSTALL_DIRECTORY
 
 echo "Give write permission for group"
 chown -R root:development $INSTALL_DIRECTORY
 chmod -R g+w $INSTALL_DIRECTORY
 
 echo "Clean tmp directory"
-rm -Rf $TMP_DIR
+rm -Rf $TMP_DIRECTORY
 
 echo "Installation completed"

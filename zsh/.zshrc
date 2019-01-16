@@ -52,7 +52,7 @@ ZSH_THEME="avit"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git fzf-zsh)
 
 # User configuration
 
@@ -62,6 +62,7 @@ source $ZSH/oh-my-zsh.sh
 
 eval `dircolors ~/.dir_colors`
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -109,6 +110,10 @@ fi
 
 eval "$(thefuck --alias)"
 
+# URXVT Ctrl+Arrow binding for move forward/bacward
+bindkey "^[Od" backward-word
+bindkey "^[Oc" forward-word
+
 # Add custom commands id folder exists
 if [ -d ~/bin -o -L ~/bin ]; then
     export PATH=~/bin:$PATH
@@ -134,6 +139,8 @@ export PATH=/opt/p4merge/bin/:$PATH
 export PATH=$PATH:~/.cargo/bin
 export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
 mux() {
 	if [[ -z "$TMUX" ]]
 	then
@@ -146,9 +153,12 @@ mux() {
 	    fi
 	fi
 }
+if [ -f '/opt/gcloud-sdk/completion.zsh.inc' ]; then source '/opt/gcloud-sdk/completion.zsh.inc'; fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/gcloud-sdk/path.zsh.inc' ]; then source '/opt/gcloud-sdk/path.zsh.inc'; fi
+if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then source '/tmp/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/opt/gcloud-sdk/completion.zsh.inc' ]; then source '/opt/gcloud-sdk/completion.zsh.inc'; fi
+if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then source '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+eval "$(direnv hook zsh)"
