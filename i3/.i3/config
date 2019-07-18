@@ -183,14 +183,14 @@ bindsym $mod+Ctrl+Left workspace prev
 #                 set $ws2 2:
 set $ws1 "1:₁"
 set $ws2 "2:λ₂"
-set $ws3 "3:₃"
+set $ws3 "3:♫₃"
 set $ws4 "4:₄"
-set $ws5 "5:₅"
-set $ws6 "6:₆"
+set $ws5 "5:₅"
+set $ws6 "6:₆"
 set $ws7 "7:₇"
-set $ws8 "8:₈"
-set $ws9 "9:₉"
-set $ws10 "10:₀"
+set $ws8 "8:₈"
+set $ws9 "9:₉"
+set $ws10 "10:₀"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -355,7 +355,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-	font xft:Noto Sans,Material Design Icons,Icons 10.5
+	font xft:Noto Sans
 	strip_workspace_numbers yes
 
 	colors {

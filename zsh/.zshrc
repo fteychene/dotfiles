@@ -120,8 +120,8 @@ if [ -d ~/bin -o -L ~/bin ]; then
 fi
 
 #Java
-export JAVA_HOME=/opt/java/jdk
-export PATH=$JAVA_HOME/bin:$PATH
+#export JAVA_HOME=/opt/java/jdk
+#export PATH=$JAVA_HOME/bin:$PATH
 
 export M2_HOME=/opt/maven/apache-maven-3.5.2
 export PATH=$M2_HOME/bin:$PATH
@@ -141,6 +141,10 @@ export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/li
 
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 mux() {
 	if [[ -z "$TMUX" ]]
 	then
@@ -155,10 +159,10 @@ mux() {
 }
 if [ -f '/opt/gcloud-sdk/completion.zsh.inc' ]; then source '/opt/gcloud-sdk/completion.zsh.inc'; fi
 
+eval "$(direnv hook zsh)"
+
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/tmp/google-cloud-sdk/path.zsh.inc' ]; then source '/tmp/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/fteychene/google-cloud-sdk/path.zsh.inc' ]; then . '/home/fteychene/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/tmp/google-cloud-sdk/completion.zsh.inc' ]; then source '/tmp/google-cloud-sdk/completion.zsh.inc'; fi
-
-eval "$(direnv hook zsh)"
+if [ -f '/home/fteychene/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/fteychene/google-cloud-sdk/completion.zsh.inc'; fi

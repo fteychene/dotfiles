@@ -25,15 +25,17 @@ install_requirements() {
     # Utils
     INSTALL="$INSTALL vim arandr feh nload bind-tools curl tig"
     # Dev
-    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant"
+    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant archlinux-java-run jre10-openjdk"
     # Apps
-    INSTALL="$INSTALL spotify slack-desktop google-chrome vlc"
+    INSTALL="$INSTALL spotify slack-desktop google-chrome vlc keybase keybase-gui zoom"
     # Sound to use pulse
     INSTALL="$INSTALL pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol"
     # Misc (qt4 is for VLC display)
-    INSTALL="$INSTALL thefuck qt4 network-manager-applet"
+    INSTALL="$INSTALL thefuck qt4 network-manager-applet unzip"
     # Fonts
-    INSTALL="$INSTALL ttf-emojione-color nerd-fonts-complete noto-fonts-emoji"
+    INSTALL="$INSTALL ttf-emojione-color nerd-fonts-complete noto-fonts"
+    # Modules
+    INSTALL="$INSTALL linux50-virtualbox-host-modules"
 
     # Install needed packages
     NEEDED=$(needed_packages)
@@ -54,16 +56,11 @@ powerlinefont(){
     ./install.sh
 }
 
-materialdesginfont() {
-    sudo cp $BASE_DIR/materialdesignicons-webfont.ttf /usr/share/fonts/materialdesignicons-webfont.ttf
-}
-
 BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 # Install
 install_requirements
 powerlinefont
-materialdesginfont
 cd $BASE_DIR
 
 xdg-settings set default-web-browser google-chrome-stable.desktop
