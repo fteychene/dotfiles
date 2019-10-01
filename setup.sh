@@ -25,7 +25,7 @@ install_requirements() {
     # Utils
     INSTALL="$INSTALL vim arandr feh nload bind-tools curl tig"
     # Dev
-    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant archlinux-java-run jre10-openjdk"
+    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant archlinux-java-run jre10-openjdk jre8-openjdk"
     # Apps
     INSTALL="$INSTALL spotify slack-desktop google-chrome vlc keybase keybase-gui zoom"
     # Sound to use pulse
