@@ -22,7 +22,8 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 "Colors
 Plugin 'w0ng/vim-hybrid'
 Plugin 'jonathanfilip/vim-lucius'
-Plugin 'powerline.vim'
+"Plugin 'powerline.vim'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

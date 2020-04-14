@@ -35,7 +35,7 @@ install_requirements() {
     # Fonts
     INSTALL="$INSTALL ttf-emojione-color nerd-fonts-complete noto-fonts"
     # Modules
-    INSTALL="$INSTALL linux50-virtualbox-host-modules"
+    INSTALL="$INSTALL linux50-virtualbox-host-modules xorg-xbacklight"
 
     # Install needed packages
     NEEDED=$(needed_packages)
@@ -72,8 +72,8 @@ echo "Create development group"
 sudo groupadd development
 sudo usermod -aG development $USER
 
-echo "Install softwares in /opt"
-sudo $BASE_DIR/opt/install.sh $USER
+#echo "Install softwares in /opt"
+#sudo $BASE_DIR/opt/install.sh $USER
 
 echo "Stow configuration"
 $BASE_DIR/install.sh

@@ -21,48 +21,21 @@ mode "border-mode" {
   bindsym u border none
   bindsym y border pixel 1
   bindsym n border normal
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
-bindsym $mod+u mode "switch-workspace"
-
-mode "switch-workspace" {
-       bindsym j move workspace to output left
-       bindsym k move workspace to output down
-       bindsym l move workspace to output up
-       bindsym m move workspace to output right
-
-       # same bindings, but for the arrow keys
-       bindsym Left move workspace to output left
-       bindsym Down move workspace to output down
-       bindsym Up move workspace to output up
-       bindsym Right move workspace to output right
-
-       # back to normal: Enter or Escape
-       bindsym Return mode "default"
-       bindsym Escape mode "default"
-
-       bindsym $mod+ampersand workspace $ws1
-       bindsym $mod+eacute workspace $ws2
-       bindsym $mod+quotedbl workspace $ws3
-       bindsym $mod+apostrophe workspace $ws4
-       bindsym $mod+parenleft workspace $ws5
-       bindsym $mod+minus workspace $ws6
-       bindsym $mod+egrave workspace $ws7
-       bindsym $mod+underscore workspace $ws8
-       bindsym $mod+ccedilla workspace $ws9
-       bindsym $mod+agrave workspace $ws10
-}
-bindsym $mod+Shift+z mode "switch-workspace"
-
+bindsym $mod+u mode "border-mode"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Noto Mono 10
+# font xft:Noto Mono 10
+font pango:DejaVu Sans Mono 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -83,8 +56,6 @@ bindsym $mod+w exec --no-startup-id morc_menu
 
 #exec --no-startup-id volumeicon
 #bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-exec --no-startup-id pulseaudio
-exec --no-startup-id killall pulseaudio && pulseaudio
 exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
@@ -109,6 +80,7 @@ bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
 bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+bindsym $mod+Shift+t exec i3-msg title_format `zenity --title="i3-msg title_format" --text "Enter a title" --entry`
 
 # focus_follows_mouse no
 
@@ -183,14 +155,14 @@ bindsym $mod+Ctrl+Left workspace prev
 #                 set $ws2 2:
 set $ws1 "1:₁"
 set $ws2 "2:λ₂"
-set $ws3 "3:♫₃"
-set $ws4 "4:₄"
-set $ws5 "5:₅"
-set $ws6 "6:₆"
-set $ws7 "7:₇"
-set $ws8 "8:₈"
-set $ws9 "9:₉"
-set $ws10 "10:₀"
+set $ws3 "3:♫₃"
+set $ws4 "4:₄"
+set $ws5 "5:₅"
+set $ws6 "6:₆"
+set $ws7 "7:₇"
+set $ws8 "8:₈"
+set $ws9 "9:₉"
+set $ws10 "10:₀"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -268,6 +240,36 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
+# Switch workspace
+mode "switch-workspace" {
+       bindsym j move workspace to output left
+       bindsym k move workspace to output down
+       bindsym l move workspace to output up
+       bindsym m move workspace to output right
+
+       # same bindings, but for the arrow keys
+       bindsym Left move workspace to output left
+       bindsym Down move workspace to output down
+       bindsym Up move workspace to output up
+       bindsym Right move workspace to output right
+
+       # back to normal: Enter or Escape
+       bindsym Return mode "default"
+       bindsym Escape mode "default"
+
+       bindsym $mod+1 workspace $ws1
+       bindsym $mod+2 workspace $ws2
+       bindsym $mod+3 workspace $ws3
+       bindsym $mod+4 workspace $ws4
+       bindsym $mod+5 workspace $ws5
+       bindsym $mod+6 workspace $ws6
+       bindsym $mod+7 workspace $ws7
+       bindsym $mod+8 workspace $ws8
+       bindsym $mod+9 workspace $ws9
+       bindsym $mod+0 workspace $ws10
+}
+bindsym $mod+Shift+z mode "switch-workspace"
+
 # Set shut down, restart and locking features
 bindsym $mod+Shift+e mode "$mode_system"
 set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
@@ -295,11 +297,13 @@ mode "$mode_spotify" {
 }
 
 bindsym $mod+$alt+d mode $mode_screen
-set $mode_screen "Screen preset (l)aptop (h)dmi dualscreen (m)irror on hdmi"
+set $mode_screen "Screen preset (l)aptop (d)ualscreen (m)irror (b)ig laptop (h)ome"
 mode $mode_screen {
     bindsym l exec ~/.screenlayout/laptop.sh
-    bindsym h exec ~/.screenlayout/hdmi.sh
+    bindsym d exec ~/.screenlayout/hdmi.sh
     bindsym m exec ~/.screenlayout/mirror.sh
+    bindsym b exec ~/.screenlayout/laptop_big.sh
+    bindsym h exec ~/.screenlayout/workfromhome.sh
     bindsym Escape mode "default"
 }
 
@@ -335,6 +339,7 @@ mode "resize" {
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
@@ -342,35 +347,53 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id conky -c ~/.config/conky/conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id feh --bg-scale ~/Pictures/green-fractal-wallpaper-1920x1200.jpg
+# exec --no-startup-id feh --bg-scale ~/Pictures/green-fractal-wallpaper-1920x1200.jpg
 exec_always --no-startup-id setcursor
+#Compose key
+exec --no-startup-id setxkbmap -option compose:ralt
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
+# bar {
+# 	status_command i3status
+# 
+#         ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
+# 	tray_output primary
+# 	#tray_output eDP1
+# 
+# 	bindsym button4 nop
+# 	bindsym button5 nop
+# 	font xft:Noto Sans
+# 	strip_workspace_numbers yes
+# 
+# 	colors {
+#                #background $transparent
+#		#background #2B2C2B
+#                background #151515
+#                statusline #F9FAF9
+#		statusline #F9FAF9
+#
+#                #                  border  backgr. text
+#		focused_workspace  #F9FAF9 #2ECC71 #2B2C2B
+#		active_workspace   #595B5B #353836 #FDF6E3
+#		inactive_workspace #595B5B #353836 #EEE8D5
+#		urgent_workspace   #16A085 #FDF6E3 #E5201D
+# 	}
+# }
+
 bar {
-	status_command i3status
+    font pango:DejaVu Sans Mono, FontAwesome 11
+    status_command /usr/bin/i3status-rs ~/.i3/status-rs.toml
+    colors {
+        background #151515
+        statusline #F9FAF9
+	statusline #F9FAF9
 
-        ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-	tray_output primary
-	#tray_output eDP1
-
-	bindsym button4 nop
-	bindsym button5 nop
-	font xft:Noto Sans
-	strip_workspace_numbers yes
-
-	colors {
-                #background $transparent
-		#background #2B2C2B
-                background #151515
-                statusline #F9FAF9
-		separator  #454947
-
-                #                  border  backgr. text
-		focused_workspace  #F9FAF9 #2ECC71 #2B2C2B
-		active_workspace   #595B5B #353836 #FDF6E3
-		inactive_workspace #595B5B #353836 #EEE8D5
-		urgent_workspace   #16A085 #FDF6E3 #E5201D
-	}
+        #                  border  backgr. text
+	focused_workspace  #F9FAF9 #2ECC71 #2B2C2B
+	active_workspace   #595B5B #353836 #FDF6E3
+	inactive_workspace #595B5B #353836 #EEE8D5
+	urgent_workspace   #16A085 #FDF6E3 #E5201D
+    }
 }
 
 # hide/unhide i3status bar

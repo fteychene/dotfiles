@@ -50,7 +50,7 @@ XTerm*reverseVideo: on
 XTerm*faceName: Terminus:size=11:antialias=true
 XTerm*selectToClipboard: true
 
-URxvt.font: xft:DejaVu Sans Mono for Powerline:size=9 
+URxvt.font: xft:DejaVu Sans Mono:size=9 
 URxvt.depth: 32
 URxvt.background: [80]#000000
 URxvt*scrollBar:                      false

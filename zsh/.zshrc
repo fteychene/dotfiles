@@ -126,23 +126,13 @@ fi
 export M2_HOME=/opt/maven/apache-maven-3.5.2
 export PATH=$M2_HOME/bin:$PATH
 
-# Scala
-export SCALA_HOME=/opt/scala/scala-2.12.1
-export SBT_HOME=/opt/sbt/sbt-0.13.13
-export PATH=$SCALA_HOME/bin:$SBT_HOME/bin:$PATH
-
-export GOROOT=/opt/go/go-1.9
-export GOPATH=~/go
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
-export PATH=/opt/p4merge/bin/:$PATH
 export PATH=$PATH:~/.cargo/bin
 export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  PATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
 fi
 
 mux() {
@@ -159,7 +149,7 @@ mux() {
 }
 if [ -f '/opt/gcloud-sdk/completion.zsh.inc' ]; then source '/opt/gcloud-sdk/completion.zsh.inc'; fi
 
-eval "$(direnv hook zsh)"
+#eval "$(direnv hook zsh)"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/fteychene/google-cloud-sdk/path.zsh.inc' ]; then . '/home/fteychene/google-cloud-sdk/path.zsh.inc'; fi
