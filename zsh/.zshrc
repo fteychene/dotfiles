@@ -156,3 +156,6 @@ if [ -f '/home/fteychene/google-cloud-sdk/path.zsh.inc' ]; then . '/home/fteyche
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/fteychene/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/fteychene/google-cloud-sdk/completion.zsh.inc'; fi
+
+source /home/fteychene/.config/broot/launcher/bash/br
+[ -f "/home/fteychene/.ghcup/env" ] && source "/home/fteychene/.ghcup/env" # ghcup-env

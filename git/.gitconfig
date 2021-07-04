@@ -38,5 +38,23 @@
 	staash = stash --include-untracked
 	staaash = stash --all
 	exclude = !sh -c 'echo "$1" >> .git/info/exclude' -
+	reset-to = "!f() { \
+		      git fetch $1 $2; \
+		      git reset --hard $1/$2; \
+		}; f"
+	adopt = "!f() { \
+            	user=$(echo $1 | cut -f1 -d:);\
+		  		branch=$(echo $1 | cut -f2 -d:);\
+				echo Adopting $user $branch ;\
+				git remote add $user git@github.com:$user/cloud.git || echo 'User already exist' ;\
+				git fetch $user $branch ;\
+				if [ -z "`git branch --list adopt/$user/$branch`" ]; then \
+					git checkout -b adopt/$user/$branch --track $user/$branch ;\
+				else \
+					git checkout adopt/$user/$branch ;\
+					git reset --hard $user/$branch ;\
+				fi; \
+		}; f"
+	files-from = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
 [commit]
 	gpgsign = true
