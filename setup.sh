@@ -14,26 +14,49 @@ needed_packages() {
     echo "$TOINSTALL"
 }
 
+# stow
+# nload bind-tools gping xorg-xbacklight arandr unzip curl
+# alacritty thefuck tmux powerline vim tig curl direnv espanso
+# i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings feh conky-i3 conky compton dunst rofi i3status-rust
+# archlinux-java-run jre11-openjdk jre8-openjdk jre-openjdk
+# code spotifyd spotify slack-desktop vlc zoom signal-desktop
+# pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol
+# linux510-virtualbox linux512-virtualbox
+# nerd-fonts-complete noto-fonts ttf-font-awesome 
+# docker vagrant clusterssh
+
+### Brew
+# gcc go vagrant-completion jq yq
+# terraform packer vault 
+# k3sup kubectl
+# starship 
+# maven gradle
+
+# curl -L https://get.oh-my.fish | fish
+
+### cargo install
+# exa exa du-dust procs fselect ytop broot fd-find sd
+
 install_requirements() {
     echo "- Install Requirements"
     # Dotfiles manager
     INSTALL="stow"
     # Display (i3)
-    INSTALL="$INSTALL i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings conky-i3 conky compton dunst rofi"
+    INSTALL="$INSTALL i3-gaps i3-scripts i3-scrot i3exit i3lock i3status-manjaro manjaro-i3-settings conky-i3 conky compton dunst rofi network-manager-applet"
     # Term
     INSTALL="$INSTALL rxvt-unicode rxvt-unicode-terminfo urxvt-resize-font-git zsh tmux powerline"
     # Utils
     INSTALL="$INSTALL vim arandr feh nload bind-tools curl tig"
     # Dev
-    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant archlinux-java-run jre10-openjdk jre8-openjdk"
+    INSTALL="$INSTALL python-pip docker jq aws-cli clusterssh vagrant archlinux-java-run jre11-openjdk jre8-openjdk code"
     # Apps
-    INSTALL="$INSTALL spotify slack-desktop google-chrome vlc keybase keybase-gui zoom"
+    INSTALL="$INSTALL spotifyd spotify slack-desktop vlc zoom google-chrome"
     # Sound to use pulse
     INSTALL="$INSTALL pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol"
     # Misc (qt4 is for VLC display)
-    INSTALL="$INSTALL thefuck qt4 network-manager-applet unzip"
+    INSTALL="$INSTALL qt4 "
     # Fonts
-    INSTALL="$INSTALL ttf-emojione-color nerd-fonts-complete noto-fonts"
+    INSTALL="$INSTALL nerd-fonts-complete noto-fonts ttf-font-awesome"
     # Modules
     INSTALL="$INSTALL linux50-virtualbox-host-modules xorg-xbacklight"
 
@@ -41,7 +64,7 @@ install_requirements() {
     NEEDED=$(needed_packages)
     if [  "$NEEDED" != "" ]; then
         for PACKAGE in $NEEDED; do
-          yaourt -S $PACKAGE
+          yay -S $PACKAGE
         done
     fi
 }
@@ -56,11 +79,20 @@ powerlinefont(){
     ./install.sh
 }
 
+nerdfont() {
+    rm -rf /tmp/nerd-fonts
+    cd /tmp
+    git clone git@github.com:ryanoasis/nerd-fonts.git
+    cd nerd-fonts
+    ./install.sh
+}
+
 BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 # Install
 install_requirements
 powerlinefont
+nerdfont
 cd $BASE_DIR
 
 xdg-settings set default-web-browser google-chrome-stable.desktop
@@ -79,4 +111,4 @@ echo "Stow configuration"
 $BASE_DIR/install.sh
 
 echo "Various config"
-sed -i -e  "s/Pale Moon/google-chrome-stable/g" ~/.config/mimeapps.list
+sed -i -e  "s/Pale Moon/firefox/g" ~/.config/mimeapps.list

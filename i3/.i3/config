@@ -337,7 +337,8 @@ mode "resize" {
 ## adjustment of i3bar battery reading (only run at the very first login):
 #exec --no-startup-id /usr/bin/adjust_i3statusconf
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+#exec --no-startup-id nitrogen --restore; sleep 1;
+exec compton -b
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id /usr/bin/AVPNC_bin/AVPNC
@@ -348,10 +349,12 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id conky -c ~/.config/conky/conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
-# exec --no-startup-id feh --bg-scale ~/Pictures/green-fractal-wallpaper-1920x1200.jpg
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpapers/green-fractal-wallpaper-1920x1200.jpg
 exec_always --no-startup-id setcursor
 #Compose key
 exec --no-startup-id setxkbmap -option compose:ralt
+
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 # bar {

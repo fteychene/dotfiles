@@ -1,8 +1,5 @@
 export QT_QPA_PLATFORMTHEME="qt5ct"
-export EDITOR="/usr/bin/vim"
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-# fix "xdg-open fork-bomb" export your preferred browser from here
-export BROWSER="/usr/bin/google-chrome-stable"
-
-export PATH="$HOME/.cargo/bin:$PATH"
-export SHELL="/usr/bin/zsh"
+export EDITOR="/usr/bin/vim"
+export BROWSER="firefox"
+. "$HOME/.cargo/env"

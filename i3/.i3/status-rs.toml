@@ -27,9 +27,16 @@ alert = 10.0
 
 [[block]]
 block = "memory"
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
+format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
 display_type = "memory"
-format_mem = "{Mup}%"
-format_swap = "{SUp}%"
+icons = true
+clickable = true
+interval = 5
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
 
 [[block]]
 block = "cpu"
@@ -37,13 +44,8 @@ interval = 1
 
 [[block]]
 block = "net"
-device = "wlp59s0"
-ip = true
-speed_up = false
-speed_down = false
-hide_missing = true
-hide_inactive = true
-bitrate = true
+device = "wlp0s20f3"
+format = "{ssid} {signal_strength} {ip} {speed_down;K*b} {graph_down;K*b}"
 
 [[block]]
 block = "sound"
