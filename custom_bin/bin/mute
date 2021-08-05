@@ -1,9 +1,0 @@
-#!/bin/bash 
-
-TARGET=$1
-
-if [ -z "$TARGET" ]; then
-	TARGET=Master
-fi
-
-amixer -q -D pulse set $TARGET toggle

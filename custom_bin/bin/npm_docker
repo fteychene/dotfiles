@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker run -w /workdir -v $(pwd):/workdir node:6.7-slim npm $@

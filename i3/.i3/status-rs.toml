@@ -45,7 +45,8 @@ interval = 1
 [[block]]
 block = "net"
 device = "wlp0s20f3"
-format = "{ssid} {signal_strength} {ip} {speed_down;K*b} {graph_down;K*b}"
+format = "{ssid} {signal_strength} {ip} {speed_down;K*b} "
+# {graph_down;K*b}
 
 [[block]]
 block = "sound"
