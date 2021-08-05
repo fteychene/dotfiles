@@ -50,7 +50,7 @@ yay -S archlinux-java-run
 
 echo 
 echo "Install applications"
-sudo pacman -S code spotifyd vlc signal-desktop
+sudo pacman -S code spotifyd vlc signal-desktop firefox
 for PACKAGE in "spotify slack-desktop zoom"; do
     yay -S $PACKAGE
 done
@@ -97,6 +97,8 @@ git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/comple
 ln -s ~/.config/completions/fish-kubectl-completions/completions/kubectl.fish ~/.config/fish/kubectl.fish
 ### K3s
 curl -sfL https://get.k3s.io | sh -
+### Minikube
+brew install minikube
 
 echo
 echo "Install rust"
@@ -127,6 +129,7 @@ echo "Various config"
 xdg-settings set default-web-browser firefox.desktop
 sed -i -e  "s/Pale Moon/firefox/g" ~/.config/mimeapps.list
 cp materialdesignicons-webfont.ttf   /usr/local/share/fonts/
+ln -s ~/.idea/idea ~/bin/idea
 
 echo
 echo "Automatic installation done, dont forget to follow manuel steps"

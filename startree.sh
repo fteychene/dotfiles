@@ -7,4 +7,4 @@ yay -S bitdefender
 
 
 echo
-echo "Install drata agent"
+echo "Install drata agent & packaged backup"
