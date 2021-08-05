@@ -6,5 +6,5 @@ sudo pacman -S debtap
 yay -S bitdefender
 
 
-
+echo
 echo "Install drata agent"

@@ -20,3 +20,8 @@ Backup solution, in .xinitrc :
 setxkbmap -option compose:ralt
 ```
 
+Firefox profiles :
+```bash
+firefox -P
+```
+

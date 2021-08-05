@@ -106,15 +106,21 @@ rustup toolchain add stable
 rustup toolchain add nightly
 cargo install cross
 
-
 echo
 echo "Install rust commands"
 for PACKAGE in "exa du-dust procs fselect ytop broot fd-find sd"; do
     cargo install $PACKAGE
 done
 
-cd $BASE_DIR
+echo
+echo "Install Haskell"
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 
+echo 
+echo "Install nix"
+curl -L https://nixos.org/nix/install | sh
+
+cd $BASE_DIR
 
 echo
 echo "Various config"
