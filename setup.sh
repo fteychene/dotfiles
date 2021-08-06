@@ -101,7 +101,7 @@ mkdir -p ~/.config/completions/
 git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/completions/fish-kubectl-completions
 ln -s ~/.config/completions/fish-kubectl-completions/completions/kubectl.fish ~/.config/fish/kubectl.fish
 ### K3s
-curl -sfL https://get.k3s.io | sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_ENABLE sh -
 ### Minikube
 brew install minikube
 
