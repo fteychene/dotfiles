@@ -1,5 +1,3 @@
-icons = "awesome"
-
 [theme]
 name = "solarized-dark"
 [theme.overrides]
@@ -8,6 +6,8 @@ idle_fg = "#EEE8D5"
 info_bg = "#2ECC71"
 info_fg = "#2B2C2B"
 
+[icons]
+name = "awesome5"
 
 [[block]]
 block = "music"
@@ -45,8 +45,8 @@ interval = 1
 [[block]]
 block = "net"
 device = "wlp0s20f3"
-format = "{ssid} {signal_strength} {ip} {speed_down;K*b} "
-# {graph_down;K*b}
+format = "{ssid} {ip} {speed_down;K*b} "
+# {signal_strength} {graph_down;K*b}
 
 [[block]]
 block = "sound"

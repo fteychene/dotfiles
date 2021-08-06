@@ -19,17 +19,18 @@ echo
 echo "Install pulseaudio"
 sudo pacman -S pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol
 
-echo
-echo "Install fonts"
-sudo pacman -S powerline-fonts  
-# nerd-fonts-complete noto-fonts ttf-font-awesome awesome-terminal-fonts 
-
 echo 
 echo "Install terminal utils"
-sudo pacman -S alacritty thefuck tmux powerline vim
+sudo pacman -S alacritty thefuck tmux powerline vim fish
 for PACKAGE in "direnv espanso"; do
     yay -S $PACKAGE
 done
+
+echo
+echo "Install fonts"
+sudo pacman -S noto-fonts ttf-font-awesome awesome-terminal-fonts
+yay -S powerline-fonts-git 
+# nerd-fonts-complete 
 
 echo
 echo "Install Oh-My-Fish"
@@ -57,15 +58,19 @@ done
 
 echo 
 echo "Install container/virtualisation"
-sudo pacman -S docker libvirt virtualbox linux510-virtualbox-host-modules linux512-virtualbox-host-modules vagrant
+sudo pacman -S docker libvirt virtualbox linux510-virtualbox-host-modules linux512-virtualbox-host-modules linux513-virtualbox-host-modules vagrant
 sudo usermod -aG libvirt $USER
 sudo usermod -aG docker $USER
 
 echo
 echo "Stow configuration"
+rm ~/.profile
 stow profile
 stow git
+rm -R ~/.config/dunst
+rm -R ~/.i3
 stow i3
+rm -R ~/.config/fish/config.fish
 stow terminal
 stow custom_bin
 stow screenlayouts
@@ -110,7 +115,7 @@ cargo install cross
 
 echo
 echo "Install rust commands"
-for PACKAGE in "exa du-dust procs fselect ytop broot fd-find sd"; do
+for PACKAGE in "bat exa du-dust procs fselect ytop broot fd-find sd"; do
     cargo install $PACKAGE
 done
 
@@ -128,12 +133,11 @@ echo
 echo "Various config"
 xdg-settings set default-web-browser firefox.desktop
 sed -i -e  "s/Pale Moon/firefox/g" ~/.config/mimeapps.list
-cp materialdesignicons-webfont.ttf   /usr/local/share/fonts/
+sudo cp materialdesignicons-webfont.ttf   /usr/local/share/fonts/
 ln -s ~/.idea/idea ~/bin/idea
 
 echo
 echo "Automatic installation done, dont forget to follow manuel steps"
 
 
-
-
+# sudo pacman -R palemoon-bin

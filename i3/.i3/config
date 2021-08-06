@@ -29,7 +29,7 @@ bindsym $mod+u mode "border-mode"
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font xft:Noto Mono 10
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono for Powerline 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -354,38 +354,8 @@ exec_always --no-startup-id setcursor
 #Compose key
 exec --no-startup-id setxkbmap -option compose:ralt
 
-
-
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
-# bar {
-# 	status_command i3status
-# 
-#         ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-# 	tray_output primary
-# 	#tray_output eDP1
-# 
-# 	bindsym button4 nop
-# 	bindsym button5 nop
-# 	font xft:Noto Sans
-# 	strip_workspace_numbers yes
-# 
-# 	colors {
-#                #background $transparent
-#		#background #2B2C2B
-#                background #151515
-#                statusline #F9FAF9
-#		statusline #F9FAF9
-#
-#                #                  border  backgr. text
-#		focused_workspace  #F9FAF9 #2ECC71 #2B2C2B
-#		active_workspace   #595B5B #353836 #FDF6E3
-#		inactive_workspace #595B5B #353836 #EEE8D5
-#		urgent_workspace   #16A085 #FDF6E3 #E5201D
-# 	}
-# }
-
 bar {
-    font pango:DejaVu Sans Mono, FontAwesome 11
+    font pango:DejaVu Sans Mono for Powerline, Font Awesome 11
     status_command /usr/bin/i3status-rs ~/.i3/status-rs.toml
     colors {
         background #151515

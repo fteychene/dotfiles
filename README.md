@@ -25,3 +25,9 @@ Firefox profiles :
 firefox -P
 ```
 
+Nix :
+```bash
+. /home/fteychene/.nix-profile/etc/profile.d/nix.sh
+```
+
+
