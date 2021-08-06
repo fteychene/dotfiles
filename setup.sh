@@ -28,17 +28,9 @@ done
 
 echo
 echo "Install fonts"
-sudo pacman -S noto-fonts ttf-font-awesome awesome-terminal-fonts
+sudo pacman -S noto-fonts ttf-font-awesome awesome-terminal-fonts noto-fonts-emoji-20210625-1
 yay -S powerline-fonts-git 
 # nerd-fonts-complete 
-
-echo
-echo "Install Oh-My-Fish"
-curl -L https://get.oh-my.fish | fish
-omf install spark
-omf install weather
-omf install agnoster
-omf theme agnoster
 
 echo
 echo "Install tools"
@@ -90,7 +82,7 @@ done
 echo
 echo "Install hashicorp tools with brew"
 for PACKAGE in "terraform packer vault "; do
-    yay -S $PACKAGE
+    brew install $PACKAGE
 done
 
 echo
@@ -104,6 +96,7 @@ ln -s ~/.config/completions/fish-kubectl-completions/completions/kubectl.fish ~/
 curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_ENABLE sh -
 ### Minikube
 brew install minikube
+brew install helm kustomize
 
 echo
 echo "Install rust"
@@ -126,6 +119,15 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
 echo 
 echo "Install nix"
 curl -L https://nixos.org/nix/install | sh
+
+echo
+echo "Install Oh-My-Fish"
+curl -L https://get.oh-my.fish | fish
+omf install spark
+omf install weather
+omf install agnoster
+omf theme agnoster
+
 
 cd $BASE_DIR
 
