@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+trap cleanup SIGINT SIGTERM ERR EXIT
+
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+
+usage() {
+  cat <<EOF
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] command
+
+Local elasticsearch environment script.
+Manage a elasticsearch and a kibana.
+
+Available options:
+
+  -h, --help           Print this help and exit
+  -v, --verbose        Print script debug info
+  -t, --technology     target runtime docker (default: docker)
+
+
+Commands:
+  start                Start the stack
+  stop                 Stop the stack
+  clean                Cleanup the stack
+  status               Check this status of the stack
+
+EOF
+  exit
+}
+
+cleanup() {
+  trap - SIGINT SIGTERM ERR EXIT
+  # script cleanup here
+}
+
+setup_colors() {
+  if [[ -t 2 ]] && [[ -z "${NO_COLOR-}" ]] && [[ "${TERM-}" != "dumb" ]]; then
+    NOFORMAT='\033[0m' RED='\033[0;31m' GREEN='\033[0;32m' ORANGE='\033[0;33m' BLUE='\033[0;34m' PURPLE='\033[0;35m' CYAN='\033[0;36m' YELLOW='\033[1;33m'
+  else
+    NOFORMAT='' RED='' GREEN='' ORANGE='' BLUE='' PURPLE='' CYAN='' YELLOW=''
+  fi
+}
+
+msg() {
+  echo >&2 -e "${1-}"
+}
+
+die() {
+  local msg=$1
+  local code=${2-1} # default exit status 1
+  msg "$msg"
+  exit "$code"
+}
+
+parse_params() {
+  technology='docker'
+
+  while :; do
+    case "${1-}" in
+    -h | --help) usage ;;
+    -v | --verbose) set -x ;;
+    --no-color) NO_COLOR=1 ;;
+    -t | --technology)
+      technology="${2-}"
+      shift
+      ;;
+    -?*) die "Unknown option: $1" ;;
+    *) break ;;
+    esac
+    shift
+  done
+
+  args=("$@")
+
+  [[ ${#args[@]} -eq 0 ]] && die "Missing script arguments"
+
+  return 0
+}
+
+parse_params "$@"
+setup_colors
+
+technology_command() {
+    local command=$1
+    case "$technology" in 
+        docker) ${command}_docker ;;
+        *) die "Invalid technology $technology. Must be one of the following : docker" ;;
+    esac 
+}
+
+DOCKER_COMPOSE_CMD="docker-compose -f ${script_dir}/docker-compose-elastic.yml -p \"local_elastic\""
+
+start_docker() {
+    $DOCKER_COMPOSE_CMD up -d 
+    if [ "$?" -eq 0 ]; then
+        echo -e "${GREEN}Local elastic stack is starting${NOFORMAT}"
+        echo -e "\tElasticsearch will be available at http://localhost:9200 and http://localhost:9300"
+        echo -e "\tKibana will be available at http://localhost:5601"
+    else
+        die  "${RED}Error starting elastic stack${NOFORMAT}"}
+    fi
+}
+
+stop_docker() {
+    $DOCKER_COMPOSE_CMD stop
+    if [ "$?" -eq 0 ]; then
+        echo -e "${GREEN}Local elastic stack is stopped${NOFORMAT}"
+    else
+        die  "${RED}Error stopping elastic stack${NOFORMAT}"}
+    fi
+}
+
+clean_docker() {
+    $DOCKER_COMPOSE_CMD down
+    if [ "$?" -eq 0 ]; then
+        echo -e "${GREEN}Cleanup local elastic stack${NOFORMAT}"
+    else
+        die  "${RED}Error cleanup elastic stack${NOFORMAT}"}
+    fi
+}
+
+status_docker() {
+    $DOCKER_COMPOSE_CMD ps
+    if [ "$?" -ne 0 ]; then
+        die  "${RED}Error getting elastic stack status, check docker dcaemon directly${NOFORMAT}"}
+    fi
+}
+
+case "${args[0]}" in 
+    start) technology_command start ;;
+    stop) technology_command stop ;;
+    clean) technology_command clean ;;
+    status) technology_command status ;;
+    *) usage ;;
+esac
