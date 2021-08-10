@@ -16,7 +16,8 @@ Available options:
 
   -h, --help           Print this help and exit
   -v, --verbose        Print script debug info
-  -t, --technology     target container runtime (default: docker-compose)
+  -t, --technology     Target container runtime (default: docker-compose)
+                       Available: docker, docker-compose
 
 
 Commands:
