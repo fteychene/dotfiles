@@ -16,7 +16,7 @@ Available options:
 
   -h, --help           Print this help and exit
   -v, --verbose        Print script debug info
-  -t, --technology     target runtime docker (default: docker)
+  -t, --technology     target container runtime (default: docker-compose)
 
 
 Commands:
@@ -54,7 +54,7 @@ die() {
 }
 
 parse_params() {
-  technology='docker'
+  technology='docker-compose'
 
   while :; do
     case "${1-}" in
@@ -85,13 +85,66 @@ technology_command() {
     local command=$1
     case "$technology" in 
         docker) ${command}_docker ;;
-        *) die "Invalid technology $technology. Must be one of the following : docker" ;;
+        docker-compose) ${command}_docker-compose ;;
+        *) die "Invalid technology $technology. Must be one of the following : docker-compose" ;;
     esac 
+}
+
+DOCKER_CMD="docker"
+
+start_docker() {
+    if [ ! "$(${DOCKER_CMD} volume ls -q -f name=local_elastic_data)" ]; then 
+        ${DOCKER_CMD} volume create -d "local" local_elastic_data
+    fi
+
+    if [ ! "$(${DOCKER_CMD} network ls -q -f name=local_elastic_network)" ]; then 
+        ${DOCKER_CMD} network create -d bridge local_elastic_network
+    fi
+
+    if [ ! "$(${DOCKER_CMD} container ps -aq -f name=local_elastic_elasticsearch)" ]; then 
+        ${DOCKER_CMD} container create \
+            --name local_elastic_elasticsearch \
+            --hostname elasticsearch \
+            --publish 0.0.0.0:9200:9200 \
+            --publish 0.0.0.0:9300:9300 \
+            --env 'discovery.type=single-node' \
+            --network local_elastic_network \
+            --volume local_elastic_data:/usr/share/elasticsearch/data \
+            --label 'stack=local_elastic' \
+            elasticsearch:7.14.0
+    fi
+    if [ ! "$(${DOCKER_CMD} container ps -aq -f name=local_elastic_kibana)" ]; then
+        ${DOCKER_CMD} container create \
+            --name local_elastic_kibana \
+            --publish 0.0.0.0:5601:5601 \
+            --env 'ELASTICSEARCH_HOSTS=http://elasticsearch:9200' \
+            --network local_elastic_network \
+            --label 'stack=local_elastic' \
+            kibana:7.14.0
+    fi
+    ${DOCKER_CMD} container start local_elastic_elasticsearch
+    ${DOCKER_CMD} container start local_elastic_kibana
+}
+
+stop_docker() {
+    ${DOCKER_CMD} container stop local_elastic_kibana
+    ${DOCKER_CMD} container stop local_elastic_elasticsearch
+}
+
+clean_docker() {
+    ${DOCKER_CMD} container rm -f local_elastic_kibana
+    ${DOCKER_CMD} container rm -f local_elastic_elasticsearch
+    ${DOCKER_CMD} network rm local_elastic_network
+    ${DOCKER_CMD} volume rm local_elastic_data
+}
+
+status_docker() {
+    ${DOCKER_CMD} container ps -a -f 'label=stack=local_elastic' 
 }
 
 DOCKER_COMPOSE_CMD="docker-compose -f ${script_dir}/docker-compose-elastic.yml -p \"local_elastic\""
 
-start_docker() {
+start_docker-compose() {
     $DOCKER_COMPOSE_CMD up -d 
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}Local elastic stack is starting${NOFORMAT}"
@@ -102,7 +155,7 @@ start_docker() {
     fi
 }
 
-stop_docker() {
+stop_docker-compose() {
     $DOCKER_COMPOSE_CMD stop
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}Local elastic stack is stopped${NOFORMAT}"
@@ -111,7 +164,7 @@ stop_docker() {
     fi
 }
 
-clean_docker() {
+clean_docker-compose() {
     $DOCKER_COMPOSE_CMD down
     if [ "$?" -eq 0 ]; then
         echo -e "${GREEN}Cleanup local elastic stack${NOFORMAT}"
@@ -120,7 +173,7 @@ clean_docker() {
     fi
 }
 
-status_docker() {
+status_docker-compose() {
     $DOCKER_COMPOSE_CMD ps
     if [ "$?" -ne 0 ]; then
         die  "${RED}Error getting elastic stack status, check docker dcaemon directly${NOFORMAT}"}
