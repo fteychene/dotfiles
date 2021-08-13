@@ -121,19 +121,21 @@ echo "Install nix"
 curl -L https://nixos.org/nix/install | sh
 
 echo
-echo "Install Oh-My-Fish"
-curl -L https://get.oh-my.fish | fish
-omf install spark
-omf install weather
-omf install agnoster
-omf theme agnoster
-
+echo "Install Fisher"
 curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
 fisher install lilyball/nix-env.fish
 fisher install evanlucas/fish-kubectl-completions
 fisher install laughedelic/brew-completions
 
 pip3 install argcomplete
+
+echo
+echo "Install Oh-My-Fish"
+curl -L https://get.oh-my.fish | fish
+omf install spark
+omf install weather
+omf install agnoster
+omf theme agnoster
 
 
 cd $BASE_DIR
@@ -142,12 +144,13 @@ echo
 echo "Various config"
 xdg-settings set default-web-browser firefox.desktop
 sed -i -e  "s/Pale Moon/firefox/g" ~/.config/mimeapps.list
-sudo cp materialdesignicons-webfont.ttf   /usr/local/share/fonts/
+sudo pacman -R palemoon-bin
+
+echo
+echo "Create idea link to ~/.idea/idea"
+mkdir ~/.idea
 ln -s ~/.idea/idea ~/bin/idea
 
 
 echo
 echo "Automatic installation done, dont forget to follow manuel steps"
-
-
-sudo pacman -R palemoon-bin
