@@ -8,7 +8,6 @@ starship init fish | source
  
 # opam configuration
 source /home/fteychene/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
-source /home/fteychene/.config/completions/fish-kubectl-completions/completions/kubectl.fish
 
 # Rust tool replacement
 alias cat bat
@@ -17,3 +16,11 @@ alias ls exa
 alias du dust
 alias tree br
 alias find fd
+
+# Brew completion
+if test -d (brew --prefix)"/share/fish/completions"
+    set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/completions
+end
+if test -d (brew --prefix)"/share/fish/vendor_completions.d"
+    set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
+end

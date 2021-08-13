@@ -21,7 +21,7 @@ sudo pacman -S pulseaudio pulseaudio-alsa manjaro-pulse pa-applet pavucontrol
 
 echo 
 echo "Install terminal utils"
-sudo pacman -S alacritty thefuck tmux powerline vim fish
+sudo pacman -S alacritty thefuck tmux powerline vim fish bash-completion
 for PACKAGE in "direnv espanso"; do
     yay -S $PACKAGE
 done
@@ -128,6 +128,13 @@ omf install weather
 omf install agnoster
 omf theme agnoster
 
+curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
+fisher install lilyball/nix-env.fish
+fisher install evanlucas/fish-kubectl-completions
+fisher install laughedelic/brew-completions
+
+pip3 install argcomplete
+
 
 cd $BASE_DIR
 
@@ -138,8 +145,9 @@ sed -i -e  "s/Pale Moon/firefox/g" ~/.config/mimeapps.list
 sudo cp materialdesignicons-webfont.ttf   /usr/local/share/fonts/
 ln -s ~/.idea/idea ~/bin/idea
 
+
 echo
 echo "Automatic installation done, dont forget to follow manuel steps"
 
 
-# sudo pacman -R palemoon-bin
+sudo pacman -R palemoon-bin
