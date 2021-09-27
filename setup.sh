@@ -50,9 +50,13 @@ done
 
 echo 
 echo "Install container/virtualisation"
-sudo pacman -S docker libvirt virtualbox linux510-virtualbox-host-modules linux512-virtualbox-host-modules linux513-virtualbox-host-modules vagrant
+sudo pacman -S docker libvirt iptables-nft qemu virtualbox linux510-virtualbox-host-modules linux512-virtualbox-host-modules linux513-virtualbox-host-modules vagrant virt-manager
 sudo usermod -aG libvirt $USER
 sudo usermod -aG docker $USER
+
+systemctl enable libvirtd.service
+systemctl enable virtlogd.service
+systemctl enable virtnetworkd.socket
 
 echo
 echo "Stow configuration"

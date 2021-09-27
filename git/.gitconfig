@@ -20,5 +20,11 @@
 		      git reset --hard $1/$2; \
 		}; f"
 	files-from = "!f() { git diff-tree --no-commit-id --name-only -r $1; }; f"
+	merged = "!f() { \
+			  BRANCH=$(git rev-parse --abbrev-ref HEAD); \
+		      git checkout $1; \
+		      git pull origin $1; \
+			  git branch -D $BRANCH; \
+		}; f"
 [commit]
 	gpgsign = true
