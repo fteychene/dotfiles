@@ -1,6 +1,6 @@
 set fish_greeting ""
 
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+bass source ~/.profile
 eval (direnv hook fish)
 
 thefuck --alias | source
@@ -24,3 +24,6 @@ end
 if test -d (brew --prefix)"/share/fish/vendor_completions.d"
     set -gx fish_complete_path $fish_complete_path (brew --prefix)/share/fish/vendor_completions.d
 end
+
+bass source '~/.google-cloud-sdk/path.bash.inc'
+bass source '~/.google-cloud-sdk/completion.bash.inc'

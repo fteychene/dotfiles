@@ -136,6 +136,7 @@ pip3 install argcomplete
 echo
 echo "Install Oh-My-Fish"
 curl -L https://get.oh-my.fish | fish
+omf install bass
 omf install spark
 omf install weather
 omf install agnoster
