@@ -1,7 +1,7 @@
 configuration {
     modi: "window,drun,ssh,combi";
     font: "mono 10";
-    theme: "custom-theme";
     terminal: "alacritty";
     ssh-command: "{terminal} --hold -e {ssh-client} {host}";
 }
+@theme "custom-theme"

@@ -1,8 +1,8 @@
 [user]
 	email = francois.teychene@gmail.com
 	name = fteychene
-	signinkey = 0BE6158C468DBAAA
-	signingkey = 0BE6158C468DBAAA
+	signinkey = 493CE5327E50A9DD
+	signingkey = 493CE5327E50A9DD
 [pull]
 	rebase = true
 [alias]

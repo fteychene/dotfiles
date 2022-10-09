@@ -30,4 +30,6 @@ Nix :
 . /home/fteychene/.nix-profile/etc/profile.d/nix.sh
 ```
 
+Reimport ssh and gpg key
+
 

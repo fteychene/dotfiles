@@ -4,14 +4,20 @@ export EDITOR="/usr/bin/vim"
 export BROWSER="firefox"
 
 export TERM=xterm
-. "$HOME/.cargo/env"
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-export PATH="$HOME/.ghcup/bin:$PATH"
-export PATH="$HOME/.gcloud-sdk/bin:$PATH"
+
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
+
 export JAVA_HOME=/usr/lib/jvm/default
 export PATH="$JAVA_HOME/bin:$PATH"
+
+if [ -d "$HOME/.cargo" ]
+then
+    . "$HOME/.cargo/env"
+fi
+
+if [ -f "$HOME/.secrets" ]
+then
+    . "$HOME/.secrets"
+fi

@@ -26,9 +26,11 @@ for PACKAGE in "direnv espanso"; do
     yay -S $PACKAGE
 done
 
+
 echo
 echo "Install fonts"
-sudo pacman -S noto-fonts ttf-font-awesome awesome-terminal-fonts noto-fonts-emoji-20210625-1
+sudo pacman -S noto-fonts ttf-font-awesome awesome-terminal-fonts
+yay noto-fonts-emoji
 yay -S powerline-fonts-git 
 # nerd-fonts-complete 
 
@@ -71,21 +73,25 @@ stow terminal
 stow custom_bin
 stow screenlayouts
 
-source ~/.profile
+echo
+echo "Install OhMyFish"
+if [ ! -d "$HOME/.local/share/omf" ]
+then
+    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install > install_omf
+    fish install_omf --path=$HOME/.local/share/omf--config=~/.config/omf --noninteractive
+    rm -f install_omf
+else
+    echo "OhMyFish is already installed"
+fi
 
 echo
 echo "Install brew"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 
-echo
-echo "Install various with brew"
-for PACKAGE in "gcc vagrant-completion jq yq starship go maven gradle docker-compose"; do
-    brew install $PACKAGE
-done
-
-echo
-echo "Install hashicorp tools with brew"
-for PACKAGE in "terraform packer vault "; do
+for PACKAGE in "gcc vagrant-completion jq yq starship go maven gradle docker-compose terraform packer vault"; do
+    echo
+    echo "Install $PACKAGE with brew"
     brew install $PACKAGE
 done
 
@@ -124,24 +130,8 @@ echo
 echo "Install nix"
 curl -L https://nixos.org/nix/install | sh
 
-echo
-echo "Install Fisher"
-curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-fisher install lilyball/nix-env.fish
-fisher install evanlucas/fish-kubectl-completions
-fisher install laughedelic/brew-completions
 
 pip3 install argcomplete
-
-echo
-echo "Install Oh-My-Fish"
-curl -L https://get.oh-my.fish | fish
-omf install bass
-omf install spark
-omf install weather
-omf install agnoster
-omf theme agnoster
-
 
 cd $BASE_DIR
 
