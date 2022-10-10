@@ -50,11 +50,20 @@ for PACKAGE in "spotify slack-desktop zoom"; do
     yay -S $PACKAGE
 done
 
+echo
+
 echo 
 echo "Install container/virtualisation"
-sudo pacman -S docker libvirt iptables-nft qemu virtualbox linux510-virtualbox-host-modules linux512-virtualbox-host-modules linux513-virtualbox-host-modules vagrant virt-manager
+sudo pacman -S docker libvirt iptables-nft qemu virtualbox vagrant virt-manager
 sudo usermod -aG libvirt $USER
 sudo usermod -aG docker $USER
+
+echo
+for KERNEL in $(mhwd-kernel -li | tail -n +3 | awk '{print $2}' | sed 's/^ *//g'); do
+echo "Install virtualbox host module for $KERNEL"
+    sudo pacman -S $KERNEL-virtualbox-host-modules
+done
+
 
 systemctl enable libvirtd.service
 systemctl enable virtlogd.service
