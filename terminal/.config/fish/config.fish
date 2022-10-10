@@ -1,5 +1,4 @@
 set fish_greeting ""
-set fisher_path $__fish_config_dir/fisher.d
 
 bass source ~/.profile
 eval (direnv hook fish)
