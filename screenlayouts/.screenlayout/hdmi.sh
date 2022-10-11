@@ -1,3 +1,13 @@
-#!/bin/sh
-xrandr --output eDP-1 --primary --mode 1920x1200 --pos 1920x0 --rotate normal --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off --output DP-3 --off --output VIRTUAL1 --off
-feh --bg-scale ~/Pictures/wallpapers/green-fractal-wallpaper-1920x1200.jpg
+#!/bin/env bash
+
+BASE_DIR="$( cd "$( dirname "$0" )" && pwd )"
+HOSTNAME=`hostname`
+SCRIPT=`basename "$0"`
+
+
+if [ -d "$BASE_DIR/$HOSTNAME" ]
+then
+    . "$BASE_DIR/$HOSTNAME/$SCRIPT"
+else 
+    . "$BASE_DIR/basic/$SCRIPT"
+fi
