@@ -45,8 +45,8 @@ yay -S archlinux-java-run
 
 echo 
 echo "Install applications"
-sudo pacman -S code spotifyd vlc signal-desktop firefox
-for PACKAGE in "spotify slack-desktop zoom"; do
+sudo pacman -S code spotifyd vlc signal-desktop firefox spotify-launcher
+for PACKAGE in "slack-desktop zoom"; do
     yay -S $PACKAGE
 done
 
@@ -105,22 +105,20 @@ for PACKAGE in "gcc vagrant-completion jq yq starship go maven gradle docker-com
 done
 
 echo
-echo "Install Kubernetes tooling"
+echo "Install Kubernetes & tooling"
+echo "Install kubectl"
 brew install kubectl
-### Kubectl completion
-mkdir -p ~/.config/completions/
-git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/completions/fish-kubectl-completions
-ln -s ~/.config/completions/fish-kubectl-completions/completions/kubectl.fish ~/.config/fish/kubectl.fish
+echo "Install "
 ### K3s
 curl -sfL https://get.k3s.io | INSTALL_K3S_SKIP_ENABLE sh -
 ### Minikube
-brew install minikube
+brew install minikube kind
 brew install helm kustomize
 
 echo
 echo "Install rust"
 curl https://sh.rustup.rs -sSf | sh
-rustup component add clippy rust-docs rust-std rustfmt cargo
+rustup component add clippy rust-docs rust-std rustfmt cargo rust-analysis
 rustup toolchain add stable
 rustup toolchain add nightly
 cargo install cross
